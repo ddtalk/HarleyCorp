@@ -6,7 +6,7 @@ spring:
   application:
     name: Office Automation System
   cache:
-    cache-names: demo
+    cache-names: employee
     caffeine:
       spec: maximumSize=500,expireAfterAccess=60s
     type: caffeine
@@ -33,7 +33,7 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/lufs_preresearch?allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
         username: root
-        password: lufs8888
+        password:
 # 下面为连接池的补充设置，应用到上面所有数据源中
 # 初始化大小，最小，最大
         initialSize: 5
@@ -63,7 +63,7 @@ spring:
         driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:3306/lufs_preresearch?allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8
         username: reader
-        password: reader8888
+        password:
 
 # 下面为连接池的补充设置，应用到上面所有数据源中
 # 初始化大小，最小，最大
@@ -115,8 +115,8 @@ dingtalk:
   env:
     open-api-host: https://oapi.dingtalk.com
     oas-bg-url: https://oapi.dingtalk.com
-    corp-id: dingd0df05d01dc3d02635c2f4657eb6378f
-    corp-secret: hFNEHMkslzVMSvikCa5w23y82lZ9fUtEJ864-rtfRw14vl5l8cX2Lhu0yZAkvyPR
+    corp-id:
+    corp-secret:
     sso-secret:
     suite-ticket:
     suite-token:
@@ -126,5 +126,8 @@ dingtalk:
     token:
     encoding-aes-key:
     auth-token:
-    agent-id: 124949289
+    agent-id:
     cache-time: 6600
+
+logback:
+  loglevel: debug

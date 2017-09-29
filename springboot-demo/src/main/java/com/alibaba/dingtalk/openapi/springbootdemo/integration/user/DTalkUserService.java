@@ -1,5 +1,7 @@
 package com.alibaba.dingtalk.openapi.springbootdemo.integration.user;
 
+import com.alibaba.dingtalk.openapi.springbootdemo.integration.exception.OApiException;
+import com.alibaba.dingtalk.openapi.springbootdemo.integration.utils.FileUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
@@ -8,8 +10,6 @@ import com.dingtalk.open.client.api.model.corp.SsoUserInfo;
 import com.dingtalk.open.client.api.service.corp.CorpUserService;
 import com.dingtalk.open.client.api.service.corp.SsoService;
 import com.dingtalk.open.client.common.ServiceException;
-import com.alibaba.dingtalk.openapi.springbootdemo.integration.exception.OApiException;
-import com.alibaba.dingtalk.openapi.springbootdemo.integration.utils.FileUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class DingTalkUserService {
+public class DTalkUserService {
     @Resource
     private CorpUserService corpUserService;
     @Resource

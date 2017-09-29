@@ -1,9 +1,9 @@
 package com.alibaba.dingtalk.openapi.springbootdemo.biz;
 
 import com.alibaba.dingtalk.openapi.springbootdemo.config.security.model.User;
-import com.alibaba.dingtalk.openapi.springbootdemo.dal.model.LufsDingtalkXref;
+import com.alibaba.dingtalk.openapi.springbootdemo.dal.model.LufsDtalkXref;
 import com.alibaba.dingtalk.openapi.springbootdemo.integration.auth.DingTalkAuthService;
-import com.alibaba.dingtalk.openapi.springbootdemo.integration.user.DingTalkUserService;
+import com.alibaba.dingtalk.openapi.springbootdemo.integration.user.DTalkUserService;
 import com.alibaba.dingtalk.openapi.springbootdemo.service.EmployeeService;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ import java.util.Optional;
 @Component
 public class DTalkUserHandler {
     @Autowired
-    private DingTalkUserService dingTalkUserService;
+    private DTalkUserService dTalkUserService;
     @Autowired
     private EmployeeService employeeService;
     @Resource
@@ -39,7 +39,7 @@ public class DTalkUserHandler {
 
         String dingId = null;
         try {
-            CorpUserDetail userInfo = dingTalkUserService.getUserInfo(accessToken, principal);
+            CorpUserDetail userInfo = dTalkUserService.getUserInfo(accessToken, principal);
             if (!Objects.isNull(userInfo)) {
                 dingId = userInfo.getUserid();
             }
@@ -54,7 +54,7 @@ public class DTalkUserHandler {
             return Optional.empty();
         }
 
-        LufsDingtalkXref dingtalkXref = employeeService.queryDingtalkXref(dingId);
+        LufsDtalkXref dingtalkXref = employeeService.queryDingtalkXref(dingId);
         if (Objects.isNull(dingtalkXref)) {
             return Optional.empty();
         }

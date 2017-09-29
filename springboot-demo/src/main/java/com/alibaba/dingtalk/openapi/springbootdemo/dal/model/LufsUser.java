@@ -27,6 +27,9 @@ public class LufsUser {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
+    @Column(name = "user_status")
+    private String userStatus;
+
     @Column(name = "created_by")
     private String createdBy;
 
@@ -135,6 +138,20 @@ public class LufsUser {
      */
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    /**
+     * @return user_status
+     */
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    /**
+     * @param userStatus
+     */
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 
     /**

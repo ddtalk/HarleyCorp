@@ -95,6 +95,8 @@ dependencies {
     compile group: 'com.github.pagehelper', name: 'pagehelper', version: "${pagehelperVerson}"
     compile group: 'org.mybatis', name: 'mybatis-typehandlers-jsr310', version: "${mybatisJsr310Version}"
 
+
+    compile group: 'com.ning', name: 'async-http-client', version: '1.9.40'
     compile group: 'com.dingtalk.open', name: 'client-sdk.core', version: "${dingtalkSdkVersion}"
     compile group: 'com.dingtalk.open', name: 'client-sdk.common', version: "${dingtalkSdkVersion}"
     compile group: 'com.dingtalk.open', name: 'client-sdk.api', version: "${dingtalkSdkVersion}"

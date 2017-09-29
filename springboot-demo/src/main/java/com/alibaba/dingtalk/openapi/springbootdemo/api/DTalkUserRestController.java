@@ -7,6 +7,7 @@ import com.alibaba.dingtalk.openapi.springbootdemo.config.security.model.Authent
 import com.alibaba.dingtalk.openapi.springbootdemo.config.security.model.User;
 import com.alibaba.dingtalk.openapi.springbootdemo.config.security.model.UserAuthentication;
 import com.alibaba.dingtalk.openapi.springbootdemo.config.security.model.UserContext;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Collections;
 
+@Api
 @Slf4j
 @RequestMapping("/api/v1/oa/dt/user")
 @RestController
@@ -56,7 +58,7 @@ public class DTalkUserRestController {
             log.debug("DTalkUserRestController.authorize authenticated ... ... UserAuthentication", userAuthentication1);
             UserContext details = userAuthentication1.getDetails();
             User user1 = details.getUser();
-            // details.get
+
             SecurityContextHolder.getContext().setAuthentication(authentication);
             boolean rememberMe = (rememberme == null) ? false : rememberme;
             String jwt = tokenProvider.createToken(authentication, rememberMe);

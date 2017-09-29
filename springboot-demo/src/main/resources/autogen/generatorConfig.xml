@@ -20,7 +20,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/lufs_preresearch"
                         userId="root"
-                        password="lufs8888">
+                        password=" ">
         </jdbcConnection>
         <javaTypeResolver type="com.github.lufs.mybatis.java8.types.JDK8JavaTypeResolver">
             <property name="forceBigDecimals" value="true"/>

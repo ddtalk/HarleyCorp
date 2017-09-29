@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @ConfigurationProperties(prefix = "dingtalk.env", ignoreUnknownFields = true, exceptionIfInvalid = true)
-public class DingTalkProperties {
+public class DTalkProperties {
     private String openApiHost = "https://oapi.dingtalk.com";
     private String oasBgUrl;
     private String corpId;

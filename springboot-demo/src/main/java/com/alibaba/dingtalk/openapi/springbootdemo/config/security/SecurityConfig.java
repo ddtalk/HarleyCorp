@@ -1,6 +1,5 @@
 package com.alibaba.dingtalk.openapi.springbootdemo.config.security;
 
-import com.alibaba.dingtalk.openapi.springbootdemo.config.security.dingtalk.DTalkSecurityModule;
 import com.alibaba.dingtalk.openapi.springbootdemo.config.security.jwt.JWTConfigurer;
 import com.alibaba.dingtalk.openapi.springbootdemo.config.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
@@ -20,8 +19,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private DTalkSecurityModule dTalkSecurityModule;
     @Autowired
     private TokenProvider tokenProvider;
 
@@ -68,8 +65,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JWTConfigurer securityConfigurerAdapter() {
         return new JWTConfigurer(tokenProvider);
     }
-
-/*    private DTalkConfigurer securityConfigurerAdapter() {
-        return new DTalkConfigurer(dTalkSecurityModule);
-    }*/
 }

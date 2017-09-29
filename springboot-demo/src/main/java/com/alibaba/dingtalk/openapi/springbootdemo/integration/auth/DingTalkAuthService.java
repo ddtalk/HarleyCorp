@@ -1,6 +1,6 @@
 package com.alibaba.dingtalk.openapi.springbootdemo.integration.auth;
 
-import com.alibaba.dingtalk.openapi.springbootdemo.config.DingTalkProperties;
+import com.alibaba.dingtalk.openapi.springbootdemo.config.DTalkProperties;
 import com.dingtalk.open.client.api.model.corp.JsapiTicket;
 import com.dingtalk.open.client.api.service.corp.CorpConnectionService;
 import com.dingtalk.open.client.api.service.corp.JsapiService;
@@ -30,15 +30,15 @@ public class DingTalkAuthService {
     private CorpConnectionService corpConnectionService;
     @Resource
     private JsapiService jsapiService;
-    private DingTalkProperties dingTalkProperties;
+    private DTalkProperties dTalkProperties;
     private CorpAccessTokenRedisRepository corpAccessTokenRedisRepository;
     private CorpJsTicketRedisRepository corpJsTicketRedisRepository;
 
     @Autowired
-    public DingTalkAuthService(DingTalkProperties dingTalkProperties,
+    public DingTalkAuthService(DTalkProperties dTalkProperties,
                                CorpAccessTokenRedisRepository corpAccessTokenRedisRepository,
                                CorpJsTicketRedisRepository corpJsTicketRedisRepository) {
-        this.dingTalkProperties = dingTalkProperties;
+        this.dTalkProperties = dTalkProperties;
         this.corpAccessTokenRedisRepository = corpAccessTokenRedisRepository;
         this.corpJsTicketRedisRepository = corpJsTicketRedisRepository;
     }
@@ -55,12 +55,12 @@ public class DingTalkAuthService {
      */
     public String getAccessToken() throws OApiException {
         LocalDateTime now = LocalDateTime.now();
-        String corpId = dingTalkProperties.getCorpId();
+        String corpId = dTalkProperties.getCorpId();
         CorpAccessToken corpAccessToken = corpAccessTokenRedisRepository.findOne(corpId);
         String accToken = "";
-        if (Objects.isNull(corpAccessToken) || now.isAfter(corpAccessToken.getBeginTime().plusSeconds(dingTalkProperties.getCacheTime()))) {
+        if (Objects.isNull(corpAccessToken) || now.isAfter(corpAccessToken.getBeginTime().plusSeconds(dTalkProperties.getCacheTime()))) {
             try {
-                accToken = corpConnectionService.getCorpToken(corpId, dingTalkProperties.getCorpSecret());
+                accToken = corpConnectionService.getCorpToken(corpId, dTalkProperties.getCorpSecret());
                 CorpAccessToken token = new CorpAccessToken();
                 token.setAccessToken(accToken);
                 token.setBeginTime(now);
@@ -86,11 +86,11 @@ public class DingTalkAuthService {
     // 正常的情况下，jsapi_ticket的有效期为7200秒，所以开发者需要在某个地方设计一个定时器，定期去更新jsapi_ticket
     public String getJsapiTicket(String accessToken) throws OApiException {
         LocalDateTime now = LocalDateTime.now();
-        String corpId = dingTalkProperties.getCorpId();
+        String corpId = dTalkProperties.getCorpId();
         CorpJsTicket corpJsTicket = corpJsTicketRedisRepository.findOne(corpId);
         String jsTicket = "";
 
-        if (Objects.isNull(corpJsTicket) || now.isAfter(corpJsTicket.getBeginTime().plusSeconds(dingTalkProperties.getCacheTime()))) {
+        if (Objects.isNull(corpJsTicket) || now.isAfter(corpJsTicket.getBeginTime().plusSeconds(dTalkProperties.getCacheTime()))) {
             try {
                 jsTicket = createJsapiTicket(accessToken);
             } catch (ServiceException e) {
@@ -110,7 +110,7 @@ public class DingTalkAuthService {
         JsapiTicket JsapiTicket = jsapiService.getJsapiTicket(accessToken, "jsapi");
         String jsTicket = JsapiTicket.getTicket();
         CorpJsTicket corpJsTicket = new CorpJsTicket();
-        corpJsTicket.setCortId(dingTalkProperties.getCorpId());
+        corpJsTicket.setCortId(dTalkProperties.getCorpId());
         corpJsTicket.setTicket(jsTicket);
         corpJsTicket.setBeginTime(LocalDateTime.now());
         corpJsTicketRedisRepository.save(corpJsTicket);

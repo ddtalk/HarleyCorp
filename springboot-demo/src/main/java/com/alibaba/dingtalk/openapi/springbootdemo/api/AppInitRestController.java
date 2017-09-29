@@ -1,7 +1,7 @@
 package com.alibaba.dingtalk.openapi.springbootdemo.api;
 
 import com.alibaba.dingtalk.openapi.springbootdemo.api.errors.CustomParameterizedException;
-import com.alibaba.dingtalk.openapi.springbootdemo.config.DingTalkProperties;
+import com.alibaba.dingtalk.openapi.springbootdemo.config.DTalkProperties;
 import com.alibaba.dingtalk.openapi.springbootdemo.integration.auth.DingTalkAuthService;
 import com.alibaba.dingtalk.openapi.springbootdemo.integration.exception.OApiException;
 import com.alibaba.dingtalk.openapi.springbootdemo.model.api.AppInitInfoReq;
@@ -24,13 +24,13 @@ import java.util.UUID;
 @RequestMapping("/api/v1/oa/dt/app")
 public class AppInitRestController {
     @Autowired
-    private DingTalkProperties dingTalkProperties;
+    private DTalkProperties dTalkProperties;
     @Autowired
     private DingTalkAuthService dingTalkAuthService;
 
     @PostMapping(value = "init/agent-id/{agentId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AppInitInfo> init(@RequestBody AppInitInfoReq req, @PathVariable("agentId") String agentId) throws UnsupportedEncodingException {
-        String validAgentId = dingTalkProperties.getAgentId();
+        String validAgentId = dTalkProperties.getAgentId();
         try {
             if (!validAgentId.equals(agentId)) {
                 throw new CustomParameterizedException("Invalid agent id");
@@ -46,7 +46,7 @@ public class AppInitRestController {
             AppInitInfo initInfo = new AppInitInfo();
             initInfo.setSignature(signature);
             initInfo.setAgentId(agentId);
-            initInfo.setCorpId(dingTalkProperties.getCorpId());
+            initInfo.setCorpId(dTalkProperties.getCorpId());
             initInfo.setNonceStr(nonceStr);
             initInfo.setTimestamp(String.valueOf(timestamp));
 

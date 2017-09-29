@@ -12,6 +12,7 @@
     <result column="user_address" jdbcType="VARCHAR" property="userAddress" />
     <result column="user_gender" jdbcType="CHAR" property="userGender" />
     <result column="date_of_birth" jdbcType="DATE" property="dateOfBirth" />
+    <result column="user_status" jdbcType="CHAR" property="userStatus" />
     <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
     <result column="create_timestamp" jdbcType="DATE" property="createTimestamp" />
     <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
