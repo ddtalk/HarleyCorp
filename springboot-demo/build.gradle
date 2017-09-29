@@ -25,6 +25,7 @@ buildscript {
         validationApiVersion = '2.0.0.Final'
         hibernateValidatorVersion = '6.0.2.Final'
         jjwtVersion = '0.7.0'
+        ningVersion = '1.9.40'
     }
 
     repositories {
@@ -57,7 +58,6 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenLocal()
-    maven() { url "http://172.16.88.71:8081/nexus/repository/maven-public/" }
     maven() { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     jcenter()
     mavenCentral()
@@ -96,7 +96,7 @@ dependencies {
     compile group: 'org.mybatis', name: 'mybatis-typehandlers-jsr310', version: "${mybatisJsr310Version}"
 
 
-    compile group: 'com.ning', name: 'async-http-client', version: '1.9.40'
+    compile group: 'com.ning', name: 'async-http-client', version: "${ningVersion}"
     compile group: 'com.dingtalk.open', name: 'client-sdk.core', version: "${dingtalkSdkVersion}"
     compile group: 'com.dingtalk.open', name: 'client-sdk.common', version: "${dingtalkSdkVersion}"
     compile group: 'com.dingtalk.open', name: 'client-sdk.api', version: "${dingtalkSdkVersion}"
