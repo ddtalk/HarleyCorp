@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alibaba.dingtalk.openapi.springbootdemo.dal.dao.LufsDtalkXrefMapper">
+  <resultMap id="BaseResultMap" type="com.alibaba.dingtalk.openapi.springbootdemo.dal.model.LufsDtalkXref">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="emp_no" jdbcType="VARCHAR" property="empNo" />
+    <result column="dtalk_userid" jdbcType="VARCHAR" property="dtalkUserid" />
+  </resultMap>
+</mapper>

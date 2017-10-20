@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+    <classPathEntry
+            location="D:\env\mysql\mysql-connector-java-5.1.40.jar"/>
+
+    <context id="mybatis" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.alibaba.dingtalk.openapi.springbootdemo.dal.mapper.MyMapper"/>
+        </plugin>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/lufs_preresearch"
+                        userId="root"
+                        password=" ">
+        </jdbcConnection>
+        <javaTypeResolver type="com.github.lufs.mybatis.java8.types.JDK8JavaTypeResolver">
+            <property name="forceBigDecimals" value="true"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.alibaba.dingtalk.openapi.springbootdemo.dal.model"
+                            targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="sqlmapper"
+                         targetProject="src/main/resources"/>
+        <javaClientGenerator targetPackage="com.alibaba.dingtalk.openapi.springbootdemo.dal.dao"
+                             targetProject="src/main/java" type="XMLMAPPER"/>
+
+        <table tableName="lufs_user"
+               enableCountByExample="true"
+               enableDeleteByExample="true"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableSelectByExample="true"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByExample="true"
+               enableUpdateByPrimaryKey="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+        <table tableName="lufs_dtalk_xref"
+               enableCountByExample="true"
+               enableDeleteByExample="true"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableSelectByExample="true"
+               enableSelectByPrimaryKey="true"
+               enableUpdateByExample="true"
+               enableUpdateByPrimaryKey="true">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
+
